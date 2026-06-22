@@ -1,6 +1,10 @@
 # docker-migrate
 
+[![Release](https://img.shields.io/github/v/release/kuwa2005/docker-migrate)](https://github.com/kuwa2005/docker-migrate/releases)
+
 Docker コンテナを **別 PC へ移行**したり、**同一 PC 上で dev / prod を並行運用**するための CLI / 対話型ツールです。
+
+> **v1.0.0** — [Releases](https://github.com/kuwa2005/docker-migrate/releases) から Linux zipapp・Windows exe・[使い方ガイド](docs/USAGE.md) をダウンロードできます。
 
 実行中（または停止中）のコンテナを入力として、イメージ・ボリューム・設定をひとまとめの **移行バンドル** にエクスポートし、移行先で復元できます。
 
@@ -21,6 +25,18 @@ Docker コンテナを **別 PC へ移行**したり、**同一 PC 上で dev / 
   - Windows `.exe` 配布版を使う場合は Python 不要
 
 ## インストール
+
+### GitHub Release から（推奨）
+
+[Releases](https://github.com/kuwa2005/docker-migrate/releases/latest) から配布ファイルを取得します。
+
+| ファイル | 対象 | Python |
+|---------|------|--------|
+| `docker-migrate` | Linux / macOS / WSL2 | 不要 |
+| `docker-migrate.exe` | Windows ネイティブ | 不要 |
+| `USAGE.md` | 使い方ガイド（日本語） | — |
+
+詳細な手順は [docs/USAGE.md](docs/USAGE.md) を参照してください。
 
 ### 開発フォルダ（リポジトリ clone 後）
 
@@ -99,7 +115,7 @@ pyinstaller --noconfirm --clean docker-migrate.spec
 
 **GitHub Actions（タグ push で自動ビルド）:**
 
-`v*` タグ（例: `v1.0.1`）を push すると `.github/workflows/build-windows.yml` が `docker-migrate.exe` をビルドし、Release に添付します。手動実行は Actions タブの **Build Windows executable** → **Run workflow** でも可能です（Artifact としてダウンロード）。
+`v*` タグ（例: `v1.0.0`）を push すると `.github/workflows/build-windows.yml` が `docker-migrate.exe` をビルドし、Release に添付します。手動実行は Actions タブの **Build Windows executable** → **Run workflow** でも可能です（Artifact としてダウンロード）。
 
 #### Windows での対話メニュー（GUI）
 
@@ -369,6 +385,13 @@ docker run -d --name demo-nginx -p 8080:80 -e APP_ENV=prod nginx:alpine
   docker-migrate export    →  USB / scp / rsync  →  docker-migrate import
   (停止→保存→再開)                                  (load→volume復元→create→start)
 ```
+
+## ドキュメント
+
+| ファイル | 内容 |
+|---------|------|
+| [docs/USAGE.md](docs/USAGE.md) | 使い方ガイド（インストール・GUI・CLI・トラブルシューティング） |
+| [CHANGELOG.md](CHANGELOG.md) | 変更履歴 |
 
 ## ライセンス
 
