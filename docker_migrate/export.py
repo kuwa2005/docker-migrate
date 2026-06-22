@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import platform
 import shutil
 from pathlib import Path
 from typing import Any
@@ -309,7 +310,7 @@ def export_container(
         "bundle_version": BUNDLE_VERSION,
         "tool_version": "1.0.0",
         "exported_at": utc_timestamp(),
-        "source_host": os.uname().nodename,
+        "source_host": platform.node(),
         "container": metadata,
         "image": image_info,
         "volumes": volume_exports,
@@ -591,6 +592,9 @@ chmod +x restore.sh
 ```bash
 docker-migrate import /path/to/bundle --start
 ```
+
+競合時（同名コンテナ・ポート・ボリューム）は `docker-migrate import` の `--mode overwrite` / `--mode clone` を使用してください。  
+`restore.sh` 単体では競合検出・複製モードには対応していません。
 
 ### 方法 3: 手動
 
