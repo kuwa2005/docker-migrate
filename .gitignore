@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Local backup bundles (generated at runtime)
+docker-backup/
+migration-bundle/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Temp
+*.tmp
+*.log
